@@ -11,6 +11,11 @@ nltk.download('vader_lexicon')
 # Initialize the SentimentIntensityAnalyzer
 sid = SentimentIntensityAnalyzer()
 
+# Define a route for the GET request
+@app.route('/', methods=['GET'])
+def test_connection():
+    return 'Connection is working!'
+
 # Define the route for the sentiment analysis API
 @app.route('/analyze-sentiment', methods=['POST'])
 def analyze_sentiment():
