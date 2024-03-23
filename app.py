@@ -9,7 +9,7 @@ nltk_data_dir = os.path.join(os.path.dirname(__file__), 'nltk_data')
 print(nltk_data_dir)
 # Download NLTK data (if not already downloaded)
 if not os.path.exists(nltk_data_dir):
-    nltk.download('vader_lexicon', download_dir=nltk_data_dir)
+    nltk.download('vader_lexicon', download_dir=os.path.join(nltk_data_dir, 'sentiment', 'vader_lexicon.zip'))
 
 # Initialize the SentimentIntensityAnalyzer
 sid = SentimentIntensityAnalyzer()
