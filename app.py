@@ -1,15 +1,23 @@
 from flask import Flask, request, jsonify
 import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
+import os
 
 # Initialize the Flask application
 app = Flask(__name__)
-
+nltk_data_dir = os.path.join(os.path.dirname(__file__), 'nltk_data')
+print(nltk_data_dir)
 # Download NLTK data (if not already downloaded)
-nltk.download('vader_lexicon')
+if not os.path.exists(nltk_data_dir):
+    nltk.download('vader_lexicon', download_dir=nltk_data_dir)
 
 # Initialize the SentimentIntensityAnalyzer
 sid = SentimentIntensityAnalyzer()
+
+# Define a route for the GET request
+@app.route('/', methods=['GET'])
+def test_connection():
+    return 'Connection is working!'
 
 # Define the route for the sentiment analysis API
 @app.route('/analyze-sentiment', methods=['POST'])
